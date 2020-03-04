@@ -1,0 +1,18 @@
+---
+- hosts: webserver
+  remote_user: Test1
+  become: true
+  tasks: 
+     - name: Install httpd package
+       yum: name=httpd state=installed
+       notify: install curl
+     - name: copy index.html
+       copy: src=index.html dest=/var/www/html/index.html
+       notify: Restart httpd
+     - name: start httpd 
+       service: name=httpd service=started
+  handlers:
+     - name: Restart httpd
+       service: name=httpd service=restarted
+     - name: install curl
+       yum: name=curl state=started 

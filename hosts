@@ -1,0 +1,7 @@
+localhost
+server2.abc.com path=/var/www/html
+[webserver]
+server3.abc.com
+server2.abc.com
+[webserver:vars]
+path=/var/www/html/index.html

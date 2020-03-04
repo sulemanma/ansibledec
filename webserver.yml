@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  remote_user: Test1
+  become: true
+  gather_facts: true
+  tasks: 
+     - name: Install httpd package
+       yum: name=httpd state=installed
+     - name: copy index.html in {{path}}
+       copy: src=index.html dest={{path}}
+     - name: start httpd servcie
+       service: name=httpd state=started 
